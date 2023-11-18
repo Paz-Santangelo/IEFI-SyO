@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BichitosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Animales">
+          <Key>
+            <PropertyRef Name="Id_Animal" />
+          </Key>
+          <Property Name="Id_Animal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_Animal" Type="varchar" MaxLength="255" />
+          <Property Name="FechaBaja" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Mascotas">
+          <Key>
+            <PropertyRef Name="Id_Mascota" />
+          </Key>
+          <Property Name="Id_Mascota" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_Mascota" Type="varchar" MaxLength="255" />
+          <Property Name="Apodo" Type="varchar" MaxLength="255" />
+          <Property Name="Nombre_Dueño" Type="varchar" MaxLength="255" />
+          <Property Name="Id_Raza" Type="int" />
+          <Property Name="FechaBaja" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Razas">
+          <Key>
+            <PropertyRef Name="Id_Raza" />
+          </Key>
+          <Property Name="Id_Raza" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_Raza" Type="varchar" MaxLength="255" />
+          <Property Name="Id_Animal" Type="int" />
+          <Property Name="FechaBaja" Type="datetime" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'Bichitos.dbo.VerAnimales' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="VerAnimales">
+          <Property Name="Nombre_Animal" Type="varchar" MaxLength="250" />
+          <Property Name="FechaBaja" Type="datetime" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'Bichitos.dbo.VerMascotas' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="VerMascotas">
+          <Property Name="Nombre_Mascota" Type="varchar" MaxLength="255" />
+          <Property Name="Apodo" Type="varchar" MaxLength="255" />
+          <Property Name="Nombre_Dueño" Type="varchar" MaxLength="255" />
+          <Property Name="FechaBaja_Mascota" Type="datetime" />
+          <Property Name="Nombre_Raza" Type="varchar" MaxLength="255" />
+          <Property Name="FechaBaja_Raza" Type="datetime" />
+          <Property Name="Nombre_Animal" Type="varchar" MaxLength="255" />
+          <Property Name="FechaBaja_Animal" Type="datetime" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'Bichitos.dbo.VerRazas' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="VerRazas">
+          <Property Name="Nombre_Raza" Type="varchar" MaxLength="250" />
+          <Property Name="FechaBaja" Type="datetime" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'Bichitos.dbo.VistaGlobalBichitosActivos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="VistaGlobalBichitosActivos">
+          <Property Name="Nombre_Animal" Type="varchar" MaxLength="250" />
+          <Property Name="Nombre_Raza" Type="varchar" MaxLength="250" />
+          <Property Name="Nombre_Mascota" Type="varchar" MaxLength="250" />
+          <Property Name="Apodo" Type="varchar" MaxLength="250" />
+          <Property Name="Nombre_Dueño" Type="varchar" MaxLength="250" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'Bichitos.dbo.VistaGlobalBichitosBorrados' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="VistaGlobalBichitosBorrados">
+          <Property Name="Nombre Animal" Type="varchar" MaxLength="250" />
+          <Property Name="Nombre Raza" Type="varchar" MaxLength="250" />
+          <Property Name="Nombre Mascota" Type="varchar" MaxLength="250" />
+          <Property Name="Apodo" Type="varchar" MaxLength="250" />
+          <Property Name="Nombre Dueño" Type="varchar" MaxLength="250" />
+          <Property Name="FechaBaja_Animal" Type="datetime" />
+          <Property Name="FechaBaja_Raza" Type="datetime" />
+          <Property Name="fecha_Baja_Mascota" Type="datetime" />
+        </EntityType>-->
+        <Association Name="FK__Mascotas__Id_Raz__656C112C">
+          <End Role="Razas" Type="Self.Razas" Multiplicity="0..1" />
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Razas">
+              <PropertyRef Name="Id_Raza" />
+            </Principal>
+            <Dependent Role="Mascotas">
+              <PropertyRef Name="Id_Raza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Razas__Id_Animal__628FA481">
+          <End Role="Animales" Type="Self.Animales" Multiplicity="0..1" />
+          <End Role="Razas" Type="Self.Razas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animales">
+              <PropertyRef Name="Id_Animal" />
+            </Principal>
+            <Dependent Role="Razas">
+              <PropertyRef Name="Id_Animal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AgregarAnimal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre_Animal" Type="varchar" Mode="In" />
+          <Parameter Name="FechaBaja" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="AgregarMascota" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre_Mascota" Type="varchar" Mode="In" />
+          <Parameter Name="Apodo" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre_Dueño" Type="varchar" Mode="In" />
+          <Parameter Name="FechaBaja" Type="datetime" Mode="In" />
+          <Parameter Name="Nombre_Raza" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre_Animal" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AgregarRaza" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre_Raza" Type="varchar" Mode="In" />
+          <Parameter Name="FechaBaja" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="BorrarAnimal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre_Animal" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="BorrarMascota" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre_Mascota" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="BorrarRaza" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Raza" Type="int" Mode="In" />
+          <Parameter Name="Nombre_Raza" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ModificarAnimal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre_Animal" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ModificarMascota" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Mascota" Type="int" Mode="In" />
+          <Parameter Name="Nombre_Mascota" Type="varchar" Mode="In" />
+          <Parameter Name="Apodo" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre_Dueño" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ModificarRaza" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Raza" Type="int" Mode="In" />
+          <Parameter Name="Nombre_Raza" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SeleccionarAnimal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre_Animal" Type="nvarchar" Mode="In" />
+          <Parameter Name="Id_Animal" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SeleccionarMascota" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Mascota" Type="int" Mode="In" />
+          <Parameter Name="Nombre_Mascota" Type="nvarchar" Mode="In" />
+          <Parameter Name="Apodo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Nombre_Dueño" Type="nvarchar" Mode="In" />
+          <Parameter Name="Id_Raza" Type="int" Mode="In" />
+          <Parameter Name="Nombre_Raza" Type="nvarchar" Mode="In" />
+          <Parameter Name="Id_Animal" Type="int" Mode="In" />
+          <Parameter Name="Nombre_Animal" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SeleccionarRaza" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Raza" Type="int" Mode="In" />
+          <Parameter Name="Nombre_Raza" Type="nvarchar" Mode="In" />
+          <Parameter Name="Id_Animal" Type="int" Mode="In" />
+          <Parameter Name="Nombre_Animal" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="BichitosModelStoreContainer">
+          <EntitySet Name="Animales" EntityType="Self.Animales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mascotas" EntityType="Self.Mascotas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Razas" EntityType="Self.Razas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Mascotas__Id_Raz__656C112C" Association="Self.FK__Mascotas__Id_Raz__656C112C">
+            <End Role="Razas" EntitySet="Razas" />
+            <End Role="Mascotas" EntitySet="Mascotas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Razas__Id_Animal__628FA481" Association="Self.FK__Razas__Id_Animal__628FA481">
+            <End Role="Animales" EntitySet="Animales" />
+            <End Role="Razas" EntitySet="Razas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BichitosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Animale">
+          <Key>
+            <PropertyRef Name="Id_Animal" />
+          </Key>
+          <Property Name="Id_Animal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_Animal" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Razas" Relationship="Self.FK__Razas__Id_Animal__628FA481" FromRole="Animales" ToRole="Razas" />
+        </EntityType>
+        <EntityType Name="Mascota">
+          <Key>
+            <PropertyRef Name="Id_Mascota" />
+          </Key>
+          <Property Name="Id_Mascota" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_Mascota" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Apodo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre_Dueño" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Raza" Type="Int32" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Raza" Relationship="Self.FK__Mascotas__Id_Raz__656C112C" FromRole="Mascotas" ToRole="Razas" />
+        </EntityType>
+        <EntityType Name="Raza">
+          <Key>
+            <PropertyRef Name="Id_Raza" />
+          </Key>
+          <Property Name="Id_Raza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_Raza" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Animal" Type="Int32" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Animale" Relationship="Self.FK__Razas__Id_Animal__628FA481" FromRole="Razas" ToRole="Animales" />
+          <NavigationProperty Name="Mascotas" Relationship="Self.FK__Mascotas__Id_Raz__656C112C" FromRole="Razas" ToRole="Mascotas" />
+        </EntityType>
+        <Association Name="FK__Razas__Id_Animal__628FA481">
+          <End Role="Animales" Type="Self.Animale" Multiplicity="0..1" />
+          <End Role="Razas" Type="Self.Raza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animales">
+              <PropertyRef Name="Id_Animal" />
+            </Principal>
+            <Dependent Role="Razas">
+              <PropertyRef Name="Id_Animal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Mascotas__Id_Raz__656C112C">
+          <End Role="Razas" Type="Self.Raza" Multiplicity="0..1" />
+          <End Role="Mascotas" Type="Self.Mascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Razas">
+              <PropertyRef Name="Id_Raza" />
+            </Principal>
+            <Dependent Role="Mascotas">
+              <PropertyRef Name="Id_Raza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BichitosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Animales" EntityType="Self.Animale" />
+          <EntitySet Name="Mascotas" EntityType="Self.Mascota" />
+          <EntitySet Name="Razas" EntityType="Self.Raza" />
+          <AssociationSet Name="FK__Razas__Id_Animal__628FA481" Association="Self.FK__Razas__Id_Animal__628FA481">
+            <End Role="Animales" EntitySet="Animales" />
+            <End Role="Razas" EntitySet="Razas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mascotas__Id_Raz__656C112C" Association="Self.FK__Mascotas__Id_Raz__656C112C">
+            <End Role="Razas" EntitySet="Razas" />
+            <End Role="Mascotas" EntitySet="Mascotas" />
+          </AssociationSet>
+          <FunctionImport Name="AgregarAnimal">
+            <Parameter Name="Nombre_Animal" Mode="In" Type="String" />
+            <Parameter Name="FechaBaja" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="AgregarMascota">
+            <Parameter Name="Nombre_Mascota" Mode="In" Type="String" />
+            <Parameter Name="Apodo" Mode="In" Type="String" />
+            <Parameter Name="Nombre_Dueño" Mode="In" Type="String" />
+            <Parameter Name="FechaBaja" Mode="In" Type="DateTime" />
+            <Parameter Name="Nombre_Raza" Mode="In" Type="String" />
+            <Parameter Name="Nombre_Animal" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AgregarRaza">
+            <Parameter Name="Nombre_Raza" Mode="In" Type="String" />
+            <Parameter Name="FechaBaja" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="BorrarAnimal">
+            <Parameter Name="Nombre_Animal" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BorrarMascota">
+            <Parameter Name="Nombre_Mascota" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BorrarRaza">
+            <Parameter Name="Id_Raza" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre_Raza" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ModificarAnimal">
+            <Parameter Name="Nombre_Animal" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ModificarMascota">
+            <Parameter Name="Id_Mascota" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre_Mascota" Mode="In" Type="String" />
+            <Parameter Name="Apodo" Mode="In" Type="String" />
+            <Parameter Name="Nombre_Dueño" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ModificarRaza">
+            <Parameter Name="Id_Raza" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre_Raza" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SeleccionarAnimal" ReturnType="Collection(BichitosModel.SeleccionarAnimal_Result)">
+            <Parameter Name="Nombre_Animal" Mode="In" Type="String" />
+            <Parameter Name="Id_Animal" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SeleccionarMascota" ReturnType="Collection(BichitosModel.SeleccionarMascota_Result)">
+            <Parameter Name="Id_Mascota" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre_Mascota" Mode="In" Type="String" />
+            <Parameter Name="Apodo" Mode="In" Type="String" />
+            <Parameter Name="Nombre_Dueño" Mode="In" Type="String" />
+            <Parameter Name="Id_Raza" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre_Raza" Mode="In" Type="String" />
+            <Parameter Name="Id_Animal" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre_Animal" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SeleccionarRaza" ReturnType="Collection(BichitosModel.SeleccionarRaza_Result)">
+            <Parameter Name="Id_Raza" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre_Raza" Mode="In" Type="String" />
+            <Parameter Name="Id_Animal" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre_Animal" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SeleccionarAnimal_Result">
+          <Property Type="Int32" Name="Id_Animal" Nullable="false" />
+          <Property Type="String" Name="Nombre_Animal" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarMascota_Result">
+          <Property Type="Int32" Name="Id_Mascota" Nullable="false" />
+          <Property Type="String" Name="Nombre_Mascota" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Apodo" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Nombre_Dueño" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="Id_Raza" Nullable="false" />
+          <Property Type="String" Name="Nombre_Raza" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="Id_Animal" Nullable="false" />
+          <Property Type="String" Name="Nombre_Animal" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SeleccionarRaza_Result">
+          <Property Type="Int32" Name="Id_Raza" Nullable="false" />
+          <Property Type="String" Name="Nombre_Raza" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="Id_Animal" Nullable="true" />
+          <Property Type="String" Name="Nombre_Animal" Nullable="true" MaxLength="255" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BichitosModelStoreContainer" CdmEntityContainer="BichitosEntities">
+          <EntitySetMapping Name="Animales">
+            <EntityTypeMapping TypeName="BichitosModel.Animale">
+              <MappingFragment StoreEntitySet="Animales">
+                <ScalarProperty Name="Id_Animal" ColumnName="Id_Animal" />
+                <ScalarProperty Name="Nombre_Animal" ColumnName="Nombre_Animal" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mascotas">
+            <EntityTypeMapping TypeName="BichitosModel.Mascota">
+              <MappingFragment StoreEntitySet="Mascotas">
+                <ScalarProperty Name="Id_Mascota" ColumnName="Id_Mascota" />
+                <ScalarProperty Name="Nombre_Mascota" ColumnName="Nombre_Mascota" />
+                <ScalarProperty Name="Apodo" ColumnName="Apodo" />
+                <ScalarProperty Name="Nombre_Dueño" ColumnName="Nombre_Dueño" />
+                <ScalarProperty Name="Id_Raza" ColumnName="Id_Raza" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Razas">
+            <EntityTypeMapping TypeName="BichitosModel.Raza">
+              <MappingFragment StoreEntitySet="Razas">
+                <ScalarProperty Name="Id_Raza" ColumnName="Id_Raza" />
+                <ScalarProperty Name="Nombre_Raza" ColumnName="Nombre_Raza" />
+                <ScalarProperty Name="Id_Animal" ColumnName="Id_Animal" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AgregarAnimal" FunctionName="BichitosModel.Store.AgregarAnimal" />
+          <FunctionImportMapping FunctionImportName="AgregarMascota" FunctionName="BichitosModel.Store.AgregarMascota" />
+          <FunctionImportMapping FunctionImportName="AgregarRaza" FunctionName="BichitosModel.Store.AgregarRaza" />
+          <FunctionImportMapping FunctionImportName="BorrarAnimal" FunctionName="BichitosModel.Store.BorrarAnimal" />
+          <FunctionImportMapping FunctionImportName="BorrarMascota" FunctionName="BichitosModel.Store.BorrarMascota" />
+          <FunctionImportMapping FunctionImportName="BorrarRaza" FunctionName="BichitosModel.Store.BorrarRaza" />
+          <FunctionImportMapping FunctionImportName="ModificarAnimal" FunctionName="BichitosModel.Store.ModificarAnimal" />
+          <FunctionImportMapping FunctionImportName="ModificarMascota" FunctionName="BichitosModel.Store.ModificarMascota" />
+          <FunctionImportMapping FunctionImportName="ModificarRaza" FunctionName="BichitosModel.Store.ModificarRaza" />
+          <FunctionImportMapping FunctionImportName="SeleccionarAnimal" FunctionName="BichitosModel.Store.SeleccionarAnimal">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BichitosModel.SeleccionarAnimal_Result">
+                <ScalarProperty Name="Id_Animal" ColumnName="Id_Animal" />
+                <ScalarProperty Name="Nombre_Animal" ColumnName="Nombre_Animal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SeleccionarMascota" FunctionName="BichitosModel.Store.SeleccionarMascota">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BichitosModel.SeleccionarMascota_Result">
+                <ScalarProperty Name="Id_Mascota" ColumnName="Id_Mascota" />
+                <ScalarProperty Name="Nombre_Mascota" ColumnName="Nombre_Mascota" />
+                <ScalarProperty Name="Apodo" ColumnName="Apodo" />
+                <ScalarProperty Name="Nombre_Dueño" ColumnName="Nombre_Dueño" />
+                <ScalarProperty Name="Id_Raza" ColumnName="Id_Raza" />
+                <ScalarProperty Name="Nombre_Raza" ColumnName="Nombre_Raza" />
+                <ScalarProperty Name="Id_Animal" ColumnName="Id_Animal" />
+                <ScalarProperty Name="Nombre_Animal" ColumnName="Nombre_Animal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SeleccionarRaza" FunctionName="BichitosModel.Store.SeleccionarRaza">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BichitosModel.SeleccionarRaza_Result">
+                <ScalarProperty Name="Id_Raza" ColumnName="Id_Raza" />
+                <ScalarProperty Name="Nombre_Raza" ColumnName="Nombre_Raza" />
+                <ScalarProperty Name="Id_Animal" ColumnName="Id_Animal" />
+                <ScalarProperty Name="Nombre_Animal" ColumnName="Nombre_Animal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

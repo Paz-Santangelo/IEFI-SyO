@@ -1,0 +1,57 @@
+﻿@model IefiSistemas2023.Models.Mascota
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles de Mascota</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Mascota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Mascota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apodo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apodo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Dueño)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Dueño)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaBaja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaBaja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Raza.Nombre_Raza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Raza.Nombre_Raza)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Mascota }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
