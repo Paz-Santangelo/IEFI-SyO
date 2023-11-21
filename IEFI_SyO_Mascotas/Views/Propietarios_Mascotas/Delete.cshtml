@@ -1,0 +1,47 @@
+﻿@model IEFI_SyO_Mascotas.Models.Propietarios_Mascotas
+
+@{
+    ViewBag.Title = "Borrar Propietario";
+}
+
+<h2>Borrar Propietario</h2>
+
+<h3>¿Estás seguro de que deseas eliminar el siguiente propietario?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Propietario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Propietario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

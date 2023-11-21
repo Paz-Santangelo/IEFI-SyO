@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MascotasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Animales">
+    <Key>
+      <PropertyRef Name="Id_Animal" />
+    </Key>
+    <Property Name="Id_Animal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_Animal" Type="varchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mascotas">
+    <Key>
+      <PropertyRef Name="Id_Mascota" />
+    </Key>
+    <Property Name="Id_Mascota" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_Mascota" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Apodo_Mascota" Type="varchar" MaxLength="250" />
+    <Property Name="Id_Raza" Type="int" />
+    <Property Name="Id_Propietario" Type="int" />
+  </EntityType>
+  <EntityType Name="Propietarios_Mascotas">
+    <Key>
+      <PropertyRef Name="Id_Propietario" />
+    </Key>
+    <Property Name="Id_Propietario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_Propietario" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Telefono" Type="varchar" MaxLength="250" />
+    <Property Name="email" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Razas">
+    <Key>
+      <PropertyRef Name="Id_Raza" />
+    </Key>
+    <Property Name="Id_Raza" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_Raza" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Id_Animal" Type="int" />
+  </EntityType>
+  <Association Name="FK__Mascotas__Id_Pro__2C3393D0">
+    <End Role="Propietarios_Mascotas" Type="Self.Propietarios_Mascotas" Multiplicity="0..1" />
+    <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Propietarios_Mascotas">
+        <PropertyRef Name="Id_Propietario" />
+      </Principal>
+      <Dependent Role="Mascotas">
+        <PropertyRef Name="Id_Propietario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mascotas__Id_Raz__2B3F6F97">
+    <End Role="Razas" Type="Self.Razas" Multiplicity="0..1" />
+    <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Razas">
+        <PropertyRef Name="Id_Raza" />
+      </Principal>
+      <Dependent Role="Mascotas">
+        <PropertyRef Name="Id_Raza" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Razas__Id_Animal__267ABA7A">
+    <End Role="Animales" Type="Self.Animales" Multiplicity="0..1" />
+    <End Role="Razas" Type="Self.Razas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animales">
+        <PropertyRef Name="Id_Animal" />
+      </Principal>
+      <Dependent Role="Razas">
+        <PropertyRef Name="Id_Animal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MascotasModelStoreContainer">
+    <EntitySet Name="Animales" EntityType="Self.Animales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mascotas" EntityType="Self.Mascotas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Propietarios_Mascotas" EntityType="Self.Propietarios_Mascotas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Razas" EntityType="Self.Razas" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Mascotas__Id_Pro__2C3393D0" Association="Self.FK__Mascotas__Id_Pro__2C3393D0">
+      <End Role="Propietarios_Mascotas" EntitySet="Propietarios_Mascotas" />
+      <End Role="Mascotas" EntitySet="Mascotas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mascotas__Id_Raz__2B3F6F97" Association="Self.FK__Mascotas__Id_Raz__2B3F6F97">
+      <End Role="Razas" EntitySet="Razas" />
+      <End Role="Mascotas" EntitySet="Mascotas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Razas__Id_Animal__267ABA7A" Association="Self.FK__Razas__Id_Animal__267ABA7A">
+      <End Role="Animales" EntitySet="Animales" />
+      <End Role="Razas" EntitySet="Razas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

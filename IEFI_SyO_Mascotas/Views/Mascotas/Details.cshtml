@@ -1,0 +1,49 @@
+﻿@model IEFI_SyO_Mascotas.Models.Mascotas
+
+@{
+    ViewBag.Title = "Detalles Mascota";
+}
+
+<h2>Detalles de Mascota</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Mascota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Mascota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apodo_Mascota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apodo_Mascota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Propietarios_Mascotas.Nombre_Propietario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Propietarios_Mascotas.Nombre_Propietario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Razas.Nombre_Raza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Razas.Nombre_Raza)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Mascota }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

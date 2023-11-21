@@ -1,0 +1,51 @@
+﻿@model IEnumerable<IEFI_SyO_Mascotas.Models.Mascotas>
+
+@{
+    ViewBag.Title = "Lista Mascotas";
+}
+
+<h2>Lista de Mascotas</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_Mascota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apodo_Mascota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Propietarios_Mascotas.Nombre_Propietario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Razas.Nombre_Raza)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_Mascota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apodo_Mascota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Propietarios_Mascotas.Nombre_Propietario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Razas.Nombre_Raza)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Mascota }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_Mascota }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Mascota })
+        </td>
+    </tr>
+}
+
+</table>

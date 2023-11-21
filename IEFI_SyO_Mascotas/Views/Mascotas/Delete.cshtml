@@ -1,0 +1,55 @@
+﻿@model IEFI_SyO_Mascotas.Models.Mascotas
+
+@{
+    ViewBag.Title = "Borrar Mascota";
+}
+
+<h2>Borrar Mascota</h2>
+
+<h3>¿Estás seguro de que deseas eliminar la siguiente mascota?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Mascota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Mascota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apodo_Mascota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apodo_Mascota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Propietarios_Mascotas.Nombre_Propietario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Propietarios_Mascotas.Nombre_Propietario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Razas.Nombre_Raza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Razas.Nombre_Raza)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

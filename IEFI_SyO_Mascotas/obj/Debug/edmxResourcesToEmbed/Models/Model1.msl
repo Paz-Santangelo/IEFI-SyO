@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MascotasModelStoreContainer" CdmEntityContainer="MascotasEntities">
+    <EntitySetMapping Name="Animales">
+      <EntityTypeMapping TypeName="MascotasModel.Animales">
+        <MappingFragment StoreEntitySet="Animales">
+          <ScalarProperty Name="Id_Animal" ColumnName="Id_Animal" />
+          <ScalarProperty Name="Nombre_Animal" ColumnName="Nombre_Animal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mascotas">
+      <EntityTypeMapping TypeName="MascotasModel.Mascotas">
+        <MappingFragment StoreEntitySet="Mascotas">
+          <ScalarProperty Name="Id_Mascota" ColumnName="Id_Mascota" />
+          <ScalarProperty Name="Nombre_Mascota" ColumnName="Nombre_Mascota" />
+          <ScalarProperty Name="Apodo_Mascota" ColumnName="Apodo_Mascota" />
+          <ScalarProperty Name="Id_Raza" ColumnName="Id_Raza" />
+          <ScalarProperty Name="Id_Propietario" ColumnName="Id_Propietario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Propietarios_Mascotas">
+      <EntityTypeMapping TypeName="MascotasModel.Propietarios_Mascotas">
+        <MappingFragment StoreEntitySet="Propietarios_Mascotas">
+          <ScalarProperty Name="Id_Propietario" ColumnName="Id_Propietario" />
+          <ScalarProperty Name="Nombre_Propietario" ColumnName="Nombre_Propietario" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Razas">
+      <EntityTypeMapping TypeName="MascotasModel.Razas">
+        <MappingFragment StoreEntitySet="Razas">
+          <ScalarProperty Name="Id_Raza" ColumnName="Id_Raza" />
+          <ScalarProperty Name="Nombre_Raza" ColumnName="Nombre_Raza" />
+          <ScalarProperty Name="Id_Animal" ColumnName="Id_Animal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
